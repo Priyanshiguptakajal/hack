@@ -1,0 +1,43 @@
+{% extends 'cosmosapp/base.html' %}
+{% block content %}
+    <div class="col-sm-8">
+        <h4 class="text-center alert alert-info">Show Planet List</h4>
+        
+        {% if cmd %}
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">planetid</th>
+                        <th scope="col">planetname</th>
+                        <th scope="col">planetdistance</th>
+                        <th scope="col">planetstars</th>
+                        <th scope="col">ACTION</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in cmd %}
+                        <tr>
+                            {% comment %} <th scope="row">{{c.name}}</th> {% endcomment %}
+                            <td>{{c.id}}<td>
+                            <td>{{c.name}}<td>
+                            <td>{{c.distance}}<td>
+                            <td>{{c.stars}}<td>
+                            
+                            <a href="{% url "updated" c.id %}" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="{% url "del" c.id %}" class="btn btn-danger btn-sm">Delete</a>
+                            
+                        </tr>
+                    {% endfor%}
+                </tbody>
+            </table>  
+
+            {% comment %} <h4>planets data</h4>  {% endcomment %}
+        
+
+         {% else %}
+            <h4 class="text-center alert alert-warning">no record</h4>
+        {% endif %} 
+        
+     </div> 
+{% endblock content%}
